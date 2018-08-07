@@ -19,17 +19,19 @@ export default class Presenter extends Component {
 
     render() {
         return (
-            <Main>
+            <div>
                 <Header name="PRESENTER"></Header>
-                <Title description="Share this meeting code with your viewers.">
-                    <Code random={this.makeid()}></Code>
-                    <Button
-                        name="START RECORDING"
-                        link="/mainviewpresenter"
-                        type="Primary">
-                    </Button>
-                </Title>
-            </Main>
+                <Main>
+                    <Title description="Share this meeting code with your viewers.">
+                        <Code random={this.makeid()}></Code>
+                        <Button
+                            name="START RECORDING"
+                            link="/mainviewpresenter"
+                            type="Primary">
+                        </Button>
+                    </Title>
+                </Main>
+            </div>
         )
     }
 }
