@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Title, Code, Button, Main} from '../components';
+
 
 export default class Presenter extends Component {
     
@@ -8,9 +10,16 @@ export default class Presenter extends Component {
     
     render() {
         return (
-            <div>
-                <h2>Presenter</h2>
-            </div>
+            <Main>
+                <Title description="Share this meeting code with your viewers.">
+                    <Code random="QWERTY"></Code>
+                    <Button 
+                        name="START RECORDING" 
+                        link="/"
+                        type="Primary">
+                    </Button>
+                </Title>
+            </Main>
         )
     }
 }
