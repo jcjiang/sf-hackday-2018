@@ -17,6 +17,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route path="/mainviewviewer" component={MainViewViewer} />
+          <Route path="/mainviewpresenter" component={MainViewPresenter} />
           <Route path="/presenter" component={Presenter} />
           <Route path="/viewer" component={Viewer} />
           <Route path="/" component={Home} />
