@@ -25,16 +25,6 @@ export default class Viewer extends Component {
     render() {
         const { status, runningTime } = this.state;
         return (
-<<<<<<< HEAD
-            <div>
-                <h2>Viewer</h2>
-                <Button name="Presenter" link="/presenter" type="Primary"/>
-               />,
-            </div>
-        )
-    }
-  }
-=======
             <Main>
                 <Title description="Enter your meeting code"/>
                   <input />
@@ -43,4 +33,3 @@ export default class Viewer extends Component {
         )
     }
 }
->>>>>>> 93195c366b3b6f3e0d3ce6c1bdd27bdd979bb6c5
