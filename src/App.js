@@ -7,6 +7,7 @@ import {  BrowserRouter,
 import {  Presenter,
           Viewer,
           MainViewViewer,
+          MainViewPresenter,
           Home } from './containers';
 
 import fire from './fire';
