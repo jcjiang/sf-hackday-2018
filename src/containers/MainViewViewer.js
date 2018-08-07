@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Title, Code, Button, Main} from '../components';
 
 export default class MainViewViewer extends Component {
 
@@ -7,7 +6,7 @@ export default class MainViewViewer extends Component {
         super(props);
         this.state = {
           runtime: 0,
-          running: false
+          running: true
         };
     }
 
@@ -15,15 +14,34 @@ export default class MainViewViewer extends Component {
       this.setState({runtime: 5});
     }
 
+    handleClick = () => {
+      this.setState(state => {
+        if (state.status) {
+          clearInterval(this.timer);
+        } else {
+          const startTime = Date.now() - this.state.runningTime;
+          this.timer = setInterval(() => {
+            this.setState({ runningTime: Date.now() - startTime });
+          });
+        }
+        return { status: !state.status };
+      });
+    };
+
+    handleReset = () => {
+      this.setState({ runningTime: 0, running: false });
+    };
+
     render() {
+        const { status, runningTime } = this.state;
         return (
             <div>
                 <h2>MAIN VIEW</h2>
-                <Button
-                    name="START RECORDING"
-                    onPress={this.vote()}
-                    type="Primary">
-                </Button>
+                <p>{runningTime}ms</p>
+                <button onPress={() => this.setState({runtime: this.state.runtime + 5})}>Highlight</button>
+                <button onClick={this.handleClick}>{status ? 'Start' : 'Stop'}</button>
+                <button onClick={this.handleReset}>Reset</button>
+                <h2>{this.state.runtime}</h2>
             </div>
         )
     }
