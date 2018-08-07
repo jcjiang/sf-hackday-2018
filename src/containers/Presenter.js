@@ -4,11 +4,11 @@ import {Title, Code, Button, Main} from '../components';
 
 
 export default class Presenter extends Component {
-    
+
     constructor(props) {
         super(props);
     }
-    
+
     makeid() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -23,9 +23,9 @@ export default class Presenter extends Component {
                 <Header name="WOW WHAT A LOW PRICE"></Header>
                 <Title description="Share this meeting code with your viewers.">
                     <Code random={this.makeid()}></Code>
-                    <Button 
-                        name="START RECORDING" 
-                        link="/"
+                    <Button
+                        name="START RECORDING"
+                        link="/mainviewpresenter"
                         type="Primary">
                     </Button>
                 </Title>
