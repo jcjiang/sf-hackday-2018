@@ -1,12 +1,23 @@
-import React, { Component } from 'react';
-import Button from './components/Button.js';
+import React, { Component }     from 'react';
+
+import {  BrowserRouter, 
+          Route, 
+          Switch }              from 'react-router-dom';
+
+import {  Presenter, 
+          Viewer,
+          Home }                from './containers';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Button/>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/presenter" component={Presenter} />
+          <Route path="/viewer" component={Viewer} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
