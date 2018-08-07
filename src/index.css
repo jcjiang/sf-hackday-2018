@@ -6,6 +6,10 @@ input {
   margin-bottom: 30px;
   height: 40px;
   width: 200px;
+  font-size: 24px;
+  text-align: center;
+  color: darkgray;
+  font-family: 'Roboto Mono', monospace;
 }
 
 body {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Header from '../components/Header.js'
 import {Title, Code, Button, Main} from '../components';
 import styled from 'styled-components';
 
@@ -15,7 +16,7 @@ const RecordButton = styled.button`
 `;
 
 export default class Presenter extends Component {
-    
+
     constructor(props) {
         super(props);
 
@@ -32,7 +33,7 @@ export default class Presenter extends Component {
             }
         });
     }
-    
+
     makeid() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -52,6 +53,7 @@ export default class Presenter extends Component {
     render() {
         return (
             <Main>
+                <Header name="PRESENTER"></Header>
                 <Title description="Share this meeting code with your viewers.">
                     <Code random={this.state.session}></Code>
                     <RecordButton

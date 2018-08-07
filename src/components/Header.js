@@ -3,22 +3,22 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const HeaderIcon = styled.div`
-    position: fixed;
-    top: 50%;
+    margin: 0 auto;
     background: #56CCF2;
     color: #FFF;
-    width: 150px;
+    width: 250px;
     padding: 20px;
+    padding-top: 45px;
     border-radius: 0px 0px 5px 5px;
     border: 0;
     font-family: 'Roboto Mono', monospace;
     font-size: 18px;
+    text-align: center;
+    overflow: hidden;
 `;
 
-export default function HeaderIcon(props) {
+export default function Header(props) {
     return (
-        <Link to={props.link}>
-    	    <HeaderIcon> {props.name} </HeaderIcon>
-        </Link>
+    	<HeaderIcon> {props.name} </HeaderIcon>
     );
 }
