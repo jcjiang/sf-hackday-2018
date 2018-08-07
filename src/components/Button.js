@@ -10,6 +10,8 @@ const PrimaryButton = styled.button`
     padding: 20px;
     border-radius: 5px;
     border: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 18px;
 `;
 
 export default function Button(props) {
