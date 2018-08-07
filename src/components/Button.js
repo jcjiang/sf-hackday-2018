@@ -15,7 +15,9 @@ const PrimaryButton = styled.button`
 `;
 
 export default function Button(props) {
-    return <Link to={props.link}>
-    	<PrimaryButton> {props.name} </PrimaryButton>
-    </Link>
+    return (
+        <Link to={props.link}>
+    	    <PrimaryButton> {props.name} </PrimaryButton>
+        </Link>
+    );
 }
