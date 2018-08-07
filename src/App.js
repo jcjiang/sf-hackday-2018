@@ -16,13 +16,13 @@ const Main = styled.div`
 
 const Presenter = () => (
   <div>
-    <h2>hey</h2>
+    <Title description="Share this meeting code with your viewers."></Title>
   </div>
 );
 
 const Viewer = () => (
   <div>
-    <h2>butt   on</h2>
+    <Title description="Enter your meeting code."></Title>
   </div>
 );
 
