@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const PrimaryButton = styled.button`
     background: #56CCF2;
@@ -12,5 +13,7 @@ const PrimaryButton = styled.button`
 `;
 
 export default function Button(props) {
-    return <PrimaryButton> {props.name} </PrimaryButton>
+    return <Link to={props.link}>
+    	<PrimaryButton> {props.name} </PrimaryButton>
+    </Link>
 }
