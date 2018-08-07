@@ -14,6 +14,7 @@ const HeaderIcon = styled.div`
     font-family: 'Roboto Mono', monospace;
     font-size: 18px;
     text-align: center;
+    overflow: hidden;
 `;
 
 export default function Header(props) {

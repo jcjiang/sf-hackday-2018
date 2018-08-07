@@ -20,7 +20,7 @@ export default class Presenter extends Component {
     render() {
         return (
             <Main>
-                <Header name="WOW WHAT A LOW PRICE"></Header>
+                <Header name="PRESENTER"></Header>
                 <Title description="Share this meeting code with your viewers.">
                     <Code random={this.makeid()}></Code>
                     <Button
