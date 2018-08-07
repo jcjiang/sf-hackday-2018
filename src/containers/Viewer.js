@@ -8,9 +8,14 @@ export default class Viewer extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+          status: false,
+          runningTime: 0
+        };
     }
 
     render() {
+        const { status, runningTime } = this.state;
         return (
             <Main>
                 <Header name="VIEWER"></Header>
