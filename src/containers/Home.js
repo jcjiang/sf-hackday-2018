@@ -24,8 +24,8 @@ export default class Home extends Component {
         return (
             <Main>
                 <Title description="Join a Meeting!"/>
-                <Button name="Presenter" link="/presenter" type="Primary"/>
-                <Button name="Viewer" link="/viewer" type="Secondary"/>
+                <Button name="PRESENTER" link="/presenter" type="Primary"/>
+                <Button name="VIEWER" link="/viewer" type="Secondary"/>
             </Main>
         )
     }

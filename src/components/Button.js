@@ -11,7 +11,7 @@ const PrimaryButton = styled.button`
     border-radius: 5px;
     border: 0;
     font-family: 'Roboto Mono', monospace;
-    font-size: 24px;
+    font-size: 1.5rem;
 `;
 
 const SecondaryButton = styled.button`
@@ -23,7 +23,7 @@ const SecondaryButton = styled.button`
     border: 2px solid #56CCF2;
     border-radius: 5px;
     font-family: 'Roboto Mono', monospace;
-    font-size: 24px;
+    font-size: 1.5rem;
 `;
 
 export default function Button(props) {
