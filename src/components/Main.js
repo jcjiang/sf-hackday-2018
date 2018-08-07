@@ -8,6 +8,8 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding-bottom: 20vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export default Main;
