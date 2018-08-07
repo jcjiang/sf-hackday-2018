@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Title from '../components/Title.js';
 
 export default class Presenter extends Component {
     
@@ -9,7 +10,7 @@ export default class Presenter extends Component {
     render() {
         return (
             <div>
-                <h2>Presenter</h2>
+                <Title description="Share this meeting code with your viewers."></Title>
             </div>
         )
     }
