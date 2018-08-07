@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Title from '../components/Title.js';
-import Code from '../components/Code.js';
-import Button from '../components/Button.js';
+import {Title, Code, Button, Main} from '../components';
+
 
 export default class Presenter extends Component {
     
@@ -11,7 +10,7 @@ export default class Presenter extends Component {
     
     render() {
         return (
-            <div>
+            <Main>
                 <Title description="Share this meeting code with your viewers.">
                     <Code random="QWERTY"></Code>
                     <Button 
@@ -20,7 +19,7 @@ export default class Presenter extends Component {
                         type="Primary">
                     </Button>
                 </Title>
-            </div>
+            </Main>
         )
     }
 }
