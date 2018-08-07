@@ -17,12 +17,15 @@ export default class Viewer extends Component {
     render() {
         const { status, runningTime } = this.state;
         return (
-            <Main>
-                <Header name="VIEWER"></Header>
-                <Title description="Enter your meeting code"/>
-                  <input/>
-                  <Button name="Enter" link="/mainviewviewer" type="Primary"/>
-            </Main>
+            <div>
+                <Header name="PRESENTER"></Header>
+                <Main>
+                    <Header name="VIEWER"></Header>
+                    <Title description="Enter your meeting code"/>
+                    <input/>
+                    <Button name="Enter" link="/mainviewviewer" type="Primary"/>
+                </Main>
+            </div>
         )
     }
 }
