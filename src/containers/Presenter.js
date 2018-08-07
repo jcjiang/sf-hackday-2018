@@ -1,11 +1,36 @@
 import React, {Component} from 'react';
 import {Title, Code, Button, Main} from '../components';
+import styled from 'styled-components';
 
+const RecordButton = styled.button`
+    background: #56CCF2;
+    color: #fff;
+    width: 250px;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+`;
 
 export default class Presenter extends Component {
     
     constructor(props) {
         super(props);
+
+        this.state = {
+            session: "",
+            recording: false
+        }
+    }
+
+    componentDidMount = () => {
+        this.setState(() => {
+            return {
+                session: this.makeid()
+            }
+        });
     }
     
     makeid() {
@@ -16,16 +41,23 @@ export default class Presenter extends Component {
         return text;
     }
 
+    toggleRecord = () => {
+        this.setState((prev) => {
+            return {
+                recording: !prev.recording
+            }
+        });
+    }
+
     render() {
         return (
             <Main>
                 <Title description="Share this meeting code with your viewers.">
-                    <Code random={this.makeid()}></Code>
-                    <Button 
-                        name="START RECORDING" 
-                        link="/"
-                        type="Primary">
-                    </Button>
+                    <Code random={this.state.session}></Code>
+                    <RecordButton
+                        onClick={this.toggleRecord}>
+                        {this.state.recording ? "STOP RECORDING" : "START RECORDING"}
+                    </RecordButton>
                 </Title>
             </Main>
         )
