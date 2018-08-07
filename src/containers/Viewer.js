@@ -18,9 +18,8 @@ export default class Viewer extends Component {
         const { status, runningTime } = this.state;
         return (
             <div>
-                <Header name="PRESENTER"></Header>
+                <Header name="VIEWER"></Header>
                 <Main>
-                    <Header name="VIEWER"></Header>
                     <Title description="Enter your meeting code"/>
                     <input/>
                     <Button name="Enter" link="/mainviewviewer" type="Primary"/>
