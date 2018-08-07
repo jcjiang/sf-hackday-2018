@@ -2,17 +2,8 @@ import React, {Component}   from 'react';
 import styled               from 'styled-components';
 
 import {Button, 
-        Title }             from '../components';
-
-const Main = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 20vh;
-`;
+        Title,
+        Main }             from '../components';
 
 export default class Home extends Component {
     
