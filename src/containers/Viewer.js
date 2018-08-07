@@ -23,7 +23,7 @@ export default class Viewer extends Component {
             <Main>
                 <Title description="Enter your meeting code"/>
                   <input />
-                  <Button name="Enter" link="/mainviewviewer"/>
+                  <Button name="Enter" link="/mainviewviewer" type="Primary"/>
             </Main>
         )
     }
