@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { ReactMic } from 'react-mic';
+import FileSaver from 'file-saver';
 
 export default class MainViewViewer extends Component {
 
