@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header from '../components/Header.js'
-import {Title, Code, Button, Main} from '../components';
+import {Title, Code, Main} from '../components';
 import styled from 'styled-components';
 
 const RecordButton = styled.button`
@@ -79,20 +79,20 @@ export default class Presenter extends Component {
     }
 
     render() {
-        const { session, recording, runningTime } = this.state;
+        const { session, recording } = this.state;
 
         return (
             <div>
                 <Header name="PRESENTER"></Header>
                 <Main>
                 <Title description="Share this meeting code with your viewers.">
-                    <Code random={this.state.session}></Code>
+                    <Code random={session}></Code>
                     <RecordButton
                         style={{
-                            background: this.state.recording ? "#ccc" : "#56CCF2"
+                            background: recording ? "#ccc" : "#56CCF2"
                         }}
                         onClick={this.toggleRecord}> 
-                        {this.state.recording ? "STOP RECORDING" : "START RECORDING"}
+                        {recording ? "STOP RECORDING" : "START RECORDING"}
                     </RecordButton>
                     <h1>{this.showDigitalTime()}</h1>
                 </Title>

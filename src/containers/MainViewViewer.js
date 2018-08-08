@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import firebase from '../fire';
 import Header from '../components/Header.js'
+import firebase from '../db/fire';
 
 let id = 0;
 

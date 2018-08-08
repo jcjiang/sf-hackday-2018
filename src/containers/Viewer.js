@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Header from '../components/Header.js'
 import {Title, Button, Main} from '../components';
-import styled from 'styled-components';
 
 
 export default class Viewer extends Component {
@@ -15,7 +14,6 @@ export default class Viewer extends Component {
     }
 
     render() {
-        const { status, runningTime } = this.state;
         return (
             <div>
                 <Header name="VIEWER"></Header>
