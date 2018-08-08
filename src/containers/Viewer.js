@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Header from '../components/Header.js'
 import {Title, Button, Main} from '../components';
 import styled from 'styled-components';
 
@@ -16,11 +17,14 @@ export default class Viewer extends Component {
     render() {
         const { status, runningTime } = this.state;
         return (
-            <Main>
-                <Title description="Enter your meeting code"/>
-                  <input/>
-                  <Button name="Enter" link="/mainviewviewer" type="Primary"/>
-            </Main>
+            <div>
+                <Header name="VIEWER"></Header>
+                <Main>
+                    <Title description="Enter your meeting code"/>
+                    <input/>
+                    <Button name="Enter" link="/mainviewviewer" type="Primary"/>
+                </Main>
+            </div>
         )
     }
 }
