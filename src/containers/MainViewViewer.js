@@ -38,17 +38,24 @@ export default class MainViewViewer extends Component {
           status: false,
           runningTime: 0,
           startTime: 0,
-          timestamps: []
+          timestamps: [],
+          session: ""
         };
     }
 
     componentDidMount() {
       this.listenForItems();
-      db.getStartTime("ABCDEF").then(res=> {
-        //this.state.runningTime = 0;
-        this.state.startTime = res;
-        console.log(res);
+      
+      const sesh = this.props.location.state.session;
+
+      this.setState({
+        session: sesh
       });
+      
+      db.getStartTime(sesh).then(res=> {
+        this.state.startTime = res;
+      });
+
     }
 
     listenForItems() {
@@ -75,11 +82,11 @@ export default class MainViewViewer extends Component {
     handleClick = () => {
       //this.setState(prevState => {
           //this.setState({ timestamps: [...this.state.timestamps, this.state.runningTime]});
-          //db.addTimeStamp("ABCDEF", this.state.runningTime);
           //clearInterval(this.timer);
 
           this.state.runningTime = Date.now() - this.state.startTime;
           this.setState({ timestamps: [...this.state.timestamps, this.state.runningTime]});
+          db.addTimeStamp(this.state.session, this.state.runningTime);
 
           // const startTime = Date.now() - this.state.runningTime;
           // this.timer = setInterval(() => {
@@ -93,13 +100,13 @@ export default class MainViewViewer extends Component {
     render() {
       const { status, runningTime, timestamps } = this.state;
 
-      const listTimeStamps = this.state.timestamps.map((ts) => 
-        <p>{this.showDigitalTime(ts)}</p>
+      const listTimeStamps = this.state.timestamps.map((ts, idx) => 
+        <p key={idx}>{this.showDigitalTime(ts)}</p>
       );
 
       return (
         <div>
-          <Header name="VIEWING ABCDEF"></Header>
+          <Header name={`VIEWING ${this.state.session}`}></Header>
           <Main>
             <ReactButton onClick={this.handleClick}>WOW!
             </ReactButton>

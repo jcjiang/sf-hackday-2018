@@ -3,7 +3,6 @@ import Header from '../components/Header.js'
 import {PresenterTitle, Code, Button, Main} from '../components';
 import styled from 'styled-components';
 import db from '../db';
-import firebase from '../db/fire';
 import { ReactMic } from 'react-mic';
 
 const RecordButton = styled.button`
@@ -135,7 +134,8 @@ export default class Presenter extends Component {
                 recording: !prev.recording
             }
         }, this.toggleSpeechDetection );
-        db.updateStartTime("ABCDEF", Date.now());
+        
+        db.updateStartTime(this.state.session, Date.now());
     }
 
     showDigitalTime = () => {

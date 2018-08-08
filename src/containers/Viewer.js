@@ -9,8 +9,15 @@ export default class Viewer extends Component {
         super(props);
         this.state = {
           status: false,
-          runningTime: 0
+          runningTime: 0,
+          sessionToken: "",
         };
+    }
+
+    onInputChange = (e) => {
+        this.setState({
+            sessionToken: e.target.value
+        });
     }
 
     render() {
@@ -19,8 +26,12 @@ export default class Viewer extends Component {
                 <Header name="VIEWER"></Header>
                 <Main>
                     <Title description="Enter your meeting code"/>
-                    <input/>
-                    <Button name="Enter" link="/mainviewviewer" type="Primary"/>
+                    <input onChange={this.onInputChange}/>
+                    <Button 
+                        name="Enter" 
+                        link="/mainviewviewer" 
+                        state={{ session: this.state.sessionToken }} 
+                        type="Primary"/>
                 </Main>
             </div>
         )

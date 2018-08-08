@@ -28,11 +28,11 @@ const SecondaryButton = styled.button`
 
 export default function Button(props) {
     if( props.type === 'Primary' ){
-        return <Link to={props.link}>
+        return <Link to={{pathname: props.link, state: props.state}}>
         <PrimaryButton> {props.name} </PrimaryButton>
         </Link>
     } else if ( props.type === 'Secondary' ) {
-        return <Link to={props.link}>
+        return <Link to={{pathname: props.link, state: props.state}}>
         <SecondaryButton> {props.name} </SecondaryButton>
         </Link>
     }
