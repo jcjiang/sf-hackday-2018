@@ -150,7 +150,7 @@ export default class Presenter extends Component {
     }
 
     render() {
-        const { session, recording, runningTime } = this.state;
+        const { session, recording } = this.state;
 
         return (
             <div>

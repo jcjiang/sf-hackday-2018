@@ -9,8 +9,6 @@ import {  Presenter,
           MainViewViewer,
           Home } from './containers';
 
-import fire from './fire';
-
 class App extends Component {
   render() {
     return (
