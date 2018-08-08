@@ -14,6 +14,7 @@ export default class MainViewViewer extends Component {
     handleClick = () => {
       this.setState(state => {
         if (state.status) {
+          this.setState({ timestamps: [...this.state.timestamps, this.state.runningTime]});
           clearInterval(this.timer);
         } else {
           const startTime = Date.now() - this.state.runningTime;
@@ -26,10 +27,11 @@ export default class MainViewViewer extends Component {
     };
 
     render() {
-      const { status, runningTime } = this.state;
+      const { status, runningTime, timestamps } = this.state;
       return (
         <div>
           <p>{runningTime}ms</p>
+          <p>{timestamps}</p>
           <button onClick={this.handleClick}>{status ? 'Stop' : 'Start'}</button>
         </div>
       );
