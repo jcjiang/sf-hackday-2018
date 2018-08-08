@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import firebase from '../fire';
+import firebase from '../db/fire';
 
 let id = 0;
 
