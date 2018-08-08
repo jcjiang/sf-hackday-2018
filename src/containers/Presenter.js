@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Header from '../components/Header.js'
 import {Title, Code, Main} from '../components';
 import styled from 'styled-components';
+import db from '../db';
+import firebase from '../db/fire';
 
 const RecordButton = styled.button`
     color: #fff;
@@ -57,6 +59,8 @@ export default class Presenter extends Component {
                 recording: !prev.recording
             }
         });
+
+        db.updateStartTime("ABCDEF", Date.now());
     }
 
     showDigitalTime = () => {

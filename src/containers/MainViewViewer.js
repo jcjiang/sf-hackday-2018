@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const ReactButton = styled.button`
     background: #eee;
     color: #56CCF2;
-    width: 100px;
+    width: 120px;
     padding: 20px;
     margin-top: 50px;
     border: 2px solid #56CCF2;
@@ -43,6 +43,11 @@ export default class MainViewViewer extends Component {
 
     componentDidMount() {
       this.listenForItems();
+      db.getStartTime("ABCDEF").then(res=> {
+        this.state.runningTime = res;
+        console.log(res);
+      }
+      );
     }
 
     listenForItems() {
@@ -51,6 +56,21 @@ export default class MainViewViewer extends Component {
           markers: items,
         });
       });
+    }
+
+    showDigitalTime = (s) => {
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var sec = s % 60;
+        s = (s - sec) / 60;
+        var min = s % 60;
+
+        var timeDisplay = "";
+
+        timeDisplay = min < 10 ? timeDisplay + "0" + min : timeDisplay + min;
+        timeDisplay += ":";
+        timeDisplay = sec < 10 ? timeDisplay + "0" + sec : timeDisplay + sec;
+        return timeDisplay;
     }
 
     handleClick = () => {
@@ -77,7 +97,9 @@ export default class MainViewViewer extends Component {
     render() {
       const { status, runningTime, timestamps } = this.state;
 
-      const listTimeStamps = this.state.timestamps.map((ts) => <p>{ts}</p>);
+      const listTimeStamps = this.state.timestamps.map((ts) => 
+        <p>{this.showDigitalTime(ts)}</p>
+      );
 
       return (
         <div>
