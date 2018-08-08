@@ -15,7 +15,7 @@ const PrimaryButton = styled.button`
 `;
 
 const SecondaryButton = styled.button`
-    background: #FFF;
+    background: #eee;
     color: #56CCF2;
     width: 250px;
     margin-top: 10px;

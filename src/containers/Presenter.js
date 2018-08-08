@@ -4,7 +4,6 @@ import {Title, Code, Button, Main} from '../components';
 import styled from 'styled-components';
 
 const RecordButton = styled.button`
-    background: #56CCF2;
     color: #fff;
     width: 250px;
     margin-top: 10px;
@@ -22,7 +21,9 @@ export default class Presenter extends Component {
 
         this.state = {
             session: "",
-            recording: false
+            recording: false,
+            runningTime: 0,
+            timestamps: []
         }
     }
 
@@ -44,24 +45,59 @@ export default class Presenter extends Component {
 
     toggleRecord = () => {
         this.setState((prev) => {
+            if (prev.recording) {
+              clearInterval(this.timer);
+            } else {
+              const startTime = Date.now() - prev.runningTime;
+              this.timer = setInterval(() => {
+                this.setState({ runningTime: Date.now() - startTime });
+              });
+            }
             return {
                 recording: !prev.recording
             }
         });
     }
 
+    showDigitalTime = () => {
+        //let date = new Date(this.state.runningTime);
+        //return date.getSeconds();
+
+        var s = this.state.runningTime;
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var sec = s % 60;
+        s = (s - sec) / 60;
+        var min = s % 60;
+
+        var timeDisplay = "";
+
+        timeDisplay = min < 10 ? timeDisplay + "0" + min : timeDisplay + min;
+        timeDisplay += ":";
+        timeDisplay = sec < 10 ? timeDisplay + "0" + sec : timeDisplay + sec;
+        return timeDisplay;
+    }
+
     render() {
+        const { session, recording, runningTime } = this.state;
+
         return (
-            <Main>
+            <div>
                 <Header name="PRESENTER"></Header>
+                <Main>
                 <Title description="Share this meeting code with your viewers.">
                     <Code random={this.state.session}></Code>
                     <RecordButton
-                        onClick={this.toggleRecord}>
+                        style={{
+                            background: this.state.recording ? "#ccc" : "#56CCF2"
+                        }}
+                        onClick={this.toggleRecord}> 
                         {this.state.recording ? "STOP RECORDING" : "START RECORDING"}
                     </RecordButton>
+                    <h1>{this.showDigitalTime()}</h1>
                 </Title>
-            </Main>
+                </Main>
+            </div>
         )
     }
 }

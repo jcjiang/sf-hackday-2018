@@ -12,7 +12,7 @@ const HeaderIcon = styled.div`
     border-radius: 0px 0px 5px 5px;
     border: 0;
     font-family: 'Roboto Mono', monospace;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
     overflow: hidden;
 `;
