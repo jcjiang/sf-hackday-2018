@@ -37,6 +37,7 @@ export default class MainViewViewer extends Component {
         this.state = {
           status: false,
           runningTime: 0,
+          startTime: 0,
           timestamps: []
         };
     }
@@ -44,10 +45,10 @@ export default class MainViewViewer extends Component {
     componentDidMount() {
       this.listenForItems();
       db.getStartTime("ABCDEF").then(res=> {
-        this.state.runningTime = res;
+        //this.state.runningTime = 0;
+        this.state.startTime = res;
         console.log(res);
-      }
-      );
+      });
     }
 
     listenForItems() {
@@ -64,9 +65,7 @@ export default class MainViewViewer extends Component {
         var sec = s % 60;
         s = (s - sec) / 60;
         var min = s % 60;
-
         var timeDisplay = "";
-
         timeDisplay = min < 10 ? timeDisplay + "0" + min : timeDisplay + min;
         timeDisplay += ":";
         timeDisplay = sec < 10 ? timeDisplay + "0" + sec : timeDisplay + sec;
@@ -74,24 +73,21 @@ export default class MainViewViewer extends Component {
     }
 
     handleClick = () => {
-      this.setState(prevState => {
-        if (prevState.status) {
+      //this.setState(prevState => {
+          //this.setState({ timestamps: [...this.state.timestamps, this.state.runningTime]});
+          //db.addTimeStamp("ABCDEF", this.state.runningTime);
+          //clearInterval(this.timer);
+
+          this.state.runningTime = Date.now() - this.state.startTime;
           this.setState({ timestamps: [...this.state.timestamps, this.state.runningTime]});
-          console.log(this.state.runningTime);
-          db.addTimeStamp("ABCDEF", this.state.runningTime);
-          clearInterval(this.timer);
-        
-        } else {
 
-          const startTime = Date.now() - this.state.runningTime;
-          this.timer = setInterval(() => {
-            this.setState({ runningTime: Date.now() - startTime });
-          });
-
-        }
+          // const startTime = Date.now() - this.state.runningTime;
+          // this.timer = setInterval(() => {
+          //   this.setState({ runningTime: Date.now() - startTime });
+          // });
         
-        return { status: !prevState.status };
-      });
+        //return { status: !prevState.status };
+      //});
     };
 
     render() {
@@ -103,9 +99,9 @@ export default class MainViewViewer extends Component {
 
       return (
         <div>
-          <Header name="VIEWER"></Header>
+          <Header name="VIEWING ABCDEF"></Header>
           <Main>
-            <ReactButton onClick={this.handleClick}>{status ? 'Stop' : 'Start'}
+            <ReactButton onClick={this.handleClick}>WOW!
             </ReactButton>
             <div>{listTimeStamps}</div>
           </Main>

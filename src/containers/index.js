@@ -7,5 +7,5 @@ export {
     Home,
     Viewer,
     Presenter,
-    MainViewViewer,
+    MainViewViewer
 };

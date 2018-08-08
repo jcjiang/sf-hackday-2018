@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import Header from '../components/Header.js'
-import {Title, Code, Main} from '../components';
+import {PresenterTitle, Code, Button, Main} from '../components';
 import styled from 'styled-components';
 import db from '../db';
 import firebase from '../db/fire';
+import { ReactMic } from 'react-mic';
 
 const RecordButton = styled.button`
+    background: #56CCF2;
     color: #fff;
     width: 250px;
     margin-top: 10px;
@@ -16,6 +18,37 @@ const RecordButton = styled.button`
     font-size: 1.5rem;
 `;
 
+const MaxHeightDiv = styled.div`
+  min-height: 128px;
+`;
+const PresenterMain = styled.div`
+  display: flex;
+  width: 60vw;
+  min-height: 80vh;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20vh;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Stopwatch = styled.h2`
+    display: inline-block;
+`;
+
+const Text = styled.p`
+  font-size: 1.4rem;
+  font-family: 'Roboto Mono', monospace;
+`;
+
+const Player = styled.div`
+    
+`;
+
+var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+recognition.continuous = true;
+
 export default class Presenter extends Component {
 
     constructor(props) {
@@ -25,8 +58,19 @@ export default class Presenter extends Component {
             session: "",
             recording: false,
             runningTime: 0,
-            timestamps: []
+            timestamps: [],
+            save: false,
+            transcription: "",
+            final: false
         }
+    }
+
+    startRecording = () => {
+      this.setState({
+        record: true
+      });
+
+      recognition.start();
     }
 
     componentDidMount = () => {
@@ -35,6 +79,30 @@ export default class Presenter extends Component {
                 session: this.makeid()
             }
         });
+
+        recognition.onstart = function() {
+          console.log('Voice recognition activated. Try speaking into the microphone.');
+        }
+
+        recognition.onspeechend = function() {
+          console.log('You were quiet for a while so voice recognition turned itself off.');
+        }
+
+        recognition.onerror = function(event) {
+          if(event.error == 'no-speech') {
+            console.log('No speech was detected. Try again.');
+          };
+        }
+
+        recognition.onresult = (event) => {
+          var current = event.resultIndex;
+
+          var transcript = event.results[current][0].transcript;
+          var updatedTranscript = this.state.transcription + transcript + ". ";
+          this.setState({
+            transcription: updatedTranscript
+          });
+        }
     }
 
     makeid() {
@@ -43,6 +111,14 @@ export default class Presenter extends Component {
         for (var i = 0; i < 6; i++)
             text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
+    }
+
+    toggleSpeechDetection = () => {
+      if (this.state.recording) {
+        recognition.start();
+      } else {
+        recognition.stop();
+      }
     }
 
     toggleRecord = () => {
@@ -58,8 +134,7 @@ export default class Presenter extends Component {
             return {
                 recording: !prev.recording
             }
-        });
-
+        }, this.toggleSpeechDetection );
         db.updateStartTime("ABCDEF", Date.now());
     }
 
@@ -88,19 +163,30 @@ export default class Presenter extends Component {
         return (
             <div>
                 <Header name="PRESENTER"></Header>
-                <Main>
-                <Title description="Share this meeting code with your viewers.">
-                    <Code random={session}></Code>
-                    <RecordButton
-                        style={{
-                            background: recording ? "#ccc" : "#56CCF2"
-                        }}
-                        onClick={this.toggleRecord}> 
-                        {recording ? "STOP RECORDING" : "START RECORDING"}
-                    </RecordButton>
-                    <h1>{this.showDigitalTime()}</h1>
-                </Title>
-                </Main>
+                <PresenterMain>
+                  <PresenterTitle description="Share this meeting code with your viewers.">
+                      <Code random={this.state.session}></Code>
+                      {this.state.recording ?
+                        <ReactMic
+                          record={this.state.recording}         // defaults -> false.  Set to true to begin recording
+                          className={"recording"} // css class name
+                          strokeColor="#000000"     // sound wave color
+                          backgroundColor="#eee"  // background color
+                        />
+                        : <MaxHeightDiv /> }
+                        
+                            <RecordButton
+                              style={{
+                                  background: this.state.recording ? "#ccc" : "#56CCF2"
+                              }}
+                              onClick={this.toggleRecord}>
+                              {this.state.recording ? "STOP RECORDING" : "START RECORDING"}
+                            </RecordButton>
+                            <Stopwatch>{this.showDigitalTime()}</Stopwatch>
+                       
+                  </PresenterTitle>
+                  <Text> {this.state.transcription} </Text>
+                </PresenterMain>
             </div>
         )
     }

@@ -15,6 +15,9 @@ input {
 }
 
 .recording {
+  width: 300px;
+  display: inline-block;
+  padding: 40px 0;
 }
 
 body {
