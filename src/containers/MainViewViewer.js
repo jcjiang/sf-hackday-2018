@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from '../fire';
+import Header from '../components/Header.js'
 
 let id = 0;
 
@@ -65,7 +66,7 @@ export default class MainViewViewer extends Component {
       const { status, runningTime, timestamps } = this.state;
       return (
         <div>
-          <p>{runningTime}ms</p>
+          <Header name="VIEWER"></Header>
           <p>{timestamps}</p>
           <button onClick={this.handleClick}>{status ? 'Stop' : 'Start'}</button>
         </div>
