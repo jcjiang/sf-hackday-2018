@@ -83,8 +83,9 @@ export default class Presenter extends Component {
         const { session, recording, runningTime } = this.state;
 
         return (
-            <Main>
+            <div>
                 <Header name="PRESENTER"></Header>
+                <Main>
                 <Title description="Share this meeting code with your viewers.">
                     <Code random={this.state.session}></Code>
                     <RecordButton
@@ -93,7 +94,8 @@ export default class Presenter extends Component {
                     </RecordButton>
                     <h1>{this.showDigitalTime()}</h1>
                 </Title>
-            </Main>
+                </Main>
+            </div>
         )
     }
 }
