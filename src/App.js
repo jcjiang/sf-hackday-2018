@@ -7,10 +7,7 @@ import {  BrowserRouter,
 import {  Presenter,
           Viewer,
           MainViewViewer,
-          MainViewPresenter,
           Home } from './containers';
-
-import fire from './fire';
 
 class App extends Component {
   render() {
@@ -18,7 +15,6 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route path="/mainviewviewer" component={MainViewViewer} />
-          <Route path="/mainviewpresenter" component={MainViewPresenter} />
           <Route path="/presenter" component={Presenter} />
           <Route path="/viewer" component={Viewer} />
           <Route path="/" component={Home} />
