@@ -4,7 +4,6 @@ import {Title, Code, Button, Main} from '../components';
 import styled from 'styled-components';
 
 const RecordButton = styled.button`
-    background: #56CCF2;
     color: #fff;
     width: 250px;
     margin-top: 10px;
@@ -89,7 +88,10 @@ export default class Presenter extends Component {
                 <Title description="Share this meeting code with your viewers.">
                     <Code random={this.state.session}></Code>
                     <RecordButton
-                        onClick={this.toggleRecord}>
+                        style={{
+                            background: this.state.recording ? "#ccc" : "#56CCF2"
+                        }}
+                        onClick={this.toggleRecord}> 
                         {this.state.recording ? "STOP RECORDING" : "START RECORDING"}
                     </RecordButton>
                     <h1>{this.showDigitalTime()}</h1>
